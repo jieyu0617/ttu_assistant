@@ -7,8 +7,17 @@ from datetime import datetime
 from urllib.parse import urljoin, urlparse, unquote
 from pathlib import Path
 
-import requests
-from bs4 import BeautifulSoup
+# ====== 終極防護：自己檢查並自動安裝缺少的套件 ======
+try:
+    import requests
+except ImportError:
+    os.system("pip install requests beautifulsoup4 pypdf python-docx openpyxl python-pptx")
+    import requests
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    from bs4 import BeautifulSoup
 
 # ====== 附件讀取套件 ======
 try:
