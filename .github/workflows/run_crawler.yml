@@ -2,10 +2,9 @@ name: Auto TTU Crawler
 
 on:
   schedule:
-    # 每天早上 11:00 (台灣時間) 執行，換算成 UTC 是 0 3 (3點 + 8小時 = 11:00)
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *' 
   
-  workflow_dispatch:  # 讓你在 GitHub 網頁上可以手動按按鈕執行
+  workflow_dispatch:
 
 jobs:
   run-crawler:
