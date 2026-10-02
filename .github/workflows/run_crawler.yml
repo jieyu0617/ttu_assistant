@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install requests beautifulsoup4 pypdf python-docx openpyxl python-pptx
 
       - name: Run crawler script
         run: python ttu_all_pages_crawler.py
