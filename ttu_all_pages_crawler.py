@@ -44,10 +44,9 @@ HEADERS = {
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
-# 近三年（含 112 學年度）
-DATE_START = datetime(2023, 8, 1)
+# 從 2026 年 8 月 10 日到今天
+DATE_START = datetime(2026, 8, 10)
 DATE_END = datetime.now()
-VALID_SCHOOL_YEARS = {112, 113, 114, 115, 116}
 
 # 固定頁（沒日期也保留）
 KEEP_ALWAYS_KEYWORDS = ["職掌", "執掌", "法規", "規定", "申請", "須知", "說明", "簡介", "流程", "Q&A", "地圖", "統計"]
