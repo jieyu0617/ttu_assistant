@@ -2,8 +2,8 @@ name: Auto TTU Crawler
 
 on:
   schedule:
-    - cron: '0 3 * * *'
-
+    - cron: '30 11 * * *' 
+  
   workflow_dispatch:
 
 jobs:
@@ -26,3 +26,13 @@ jobs:
 
       - name: Run crawler script
         run: python ttu_all_pages_crawler.py
+
+      - name: Upload crawler results
+        uses: actions/upload-artifact@v4
+        with:
+          name: ttu-crawler-data
+          path: |
+            *.txt
+            *.xlsx
+            ttu_all_pages/
+            ttu_announcements/
