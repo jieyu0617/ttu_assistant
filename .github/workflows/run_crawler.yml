@@ -27,16 +27,13 @@ jobs:
       - name: Run crawler script
         run: python ttu_all_pages_crawler.py
 
-      # ====== 關鍵：手動將爬到的檔案打包成標準 zip 檔再上傳 ======
-      - name: Zip crawler results
-        run: |
-          mkdir -p output_data
-          cp *.txt *.xlsx output_data/ 2>/dev/null || true
-          cp -r ttu_all_pages ttu_announcements output_data/ 2>/dev/null || true
-          cd output_data && zip -r ../ttu-data.zip .
-
+      # ====== 直接上傳檔案與資料夾，不需要額外 zip ======
       - name: Upload crawler results
         uses: actions/upload-artifact@v4
         with:
           name: ttu-crawler-data
-          path: ttu-data.zip
+          path: |
+            *.txt
+            *.xlsx
+            ttu_all_pages/
+            ttu_announcements/
