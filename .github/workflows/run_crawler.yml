@@ -2,7 +2,7 @@ name: Auto TTU Crawler
 
 on:
   schedule:
-    - cron: '30 11 * * *' 
+    - cron: '30 12 * * *' 
   
   workflow_dispatch:
 
@@ -27,12 +27,10 @@ jobs:
       - name: Run crawler script
         run: python ttu_all_pages_crawler.py
 
-      - name: Upload crawler results
-        uses: actions/upload-artifact@v4
-        with:
-          name: ttu-crawler-data
-          path: |
-            *.txt
-            *.xlsx
-            ttu_all_pages/
-            ttu_announcements/
+      - name: Commit and push crawler results
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.txt *.xlsx ttu_all_pages/ ttu_announcements/ || true
+          git commit -m "Auto-update crawler results [skip ci]" || exit 0
+          git push
